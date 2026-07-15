@@ -69,4 +69,88 @@ MODIFY FirstName VARCHAR(50) NOT NULL;
 ALTER TABLE CUSTOMERS
 ADD CONSTRAINT uq_Email UNIQUE (Email);
 
+use bankingdb;
+
+insert into customers
+(customerID, FirstName, LastName, Email, Phone, DateOfBirth)
+values
+(101, 'Rahul', 'Sharma', 'rahul@gamil.com', '9876543210', '1998-04-15');
+
+insert into accounts
+(accountID, CustomerID, Accounttype, Balance)
+values
+(201, 101, 'Savings', 25000);
+
+set sql_safe_updates=0;
+
+select * from customers;
+
+update customers
+set phone='9999999999'
+where customerID=101;
+
+select * from customers
+where customerID=101;
+
+update customers
+set email='rahul.sharma@gmail.com'
+where customerID=101;
+
+select * from customers
+where customerID=101;
+use bankingdb;
+alter table accounts
+add constraint fk_customer_ID
+foreign key(CustomerID)
+references customers(customerID);
+
+alter table accounts
+add constraint fk_branch_ID
+foreign key(BranchID)
+references branches(BranchID);
+
+alter table branches
+add constraint pk_branch_id
+primary key(branchid);
+
+alter table accounts
+add branchid int;
+
+alter table transactions
+add constraint fk_account_ID
+foreign key(accountID)
+references accounts(accountID);
+
+alter table transactions
+add constraint pk_transaction_id
+primary key(transactionid);
+
+alter table transactions
+add accountid int;
+
+
+
+alter table accounts
+add constraint pk_account_id
+primary key(accountid);
+
+alter table loans
+add constraint pk_loan_id
+primary key(loanid);
+
+alter table loans
+add customerid int;
+
+alter table loans
+add constraint fk_custr_ID
+foreign key(customerID)
+references customers(customerID);
+
+
+
+
+
+
+
+
 
