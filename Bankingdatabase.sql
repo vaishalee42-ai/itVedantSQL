@@ -146,6 +146,24 @@ add constraint fk_custr_ID
 foreign key(customerID)
 references customers(customerID);
 
+select * from transactions;
+
+insert into transactions
+values
+(302, '2026-07-01', 5000.00, 'Deposit', 201);
+
+select * from accounts;
+
+DELETE FROM transactions
+WHERE TRANSACTIONID = 302;
+
+SELECT * FROM TRANSACTIONS;
+
+DELETE FROM ACCOUNTS 
+WHERE ACCOUNTID = 202;
+
+SELECT * FROM ACCOUNTS;
+
 
 
 
