@@ -340,3 +340,103 @@ SELECT TransactionID,
        Amount,
        MAX(Amount) OVER () AS MaximumTransaction
 FROM Transactions;
+
+select * from customers
+where firstname like 'A%';
+
+select * from customers
+where email like '%gmail%';
+
+select * from customers
+where firstname like '%kar';
+
+select * from customers 
+where firstname like 'R%';
+
+select * from customers
+where email like '%yahoo%';
+
+select * from customers
+where lastname like 'p%';
+
+select * from customers 
+where phone like '%99';
+
+select * from accounts
+where accounttype in ('savings', 'current');
+
+select * from transactions
+where transactiontype in ('deposit', 'withdrawal');
+
+select * from customers
+where customerid in (101,102,105);
+
+select * from transactions
+where transactiontype in ('payment', 'deposit');
+
+select * from customers
+where CustomerID in (103, 104);
+
+select * from accounts
+where accountid in (201, 205);
+
+select * from customers
+order by lastname asc;
+
+select * from accounts
+order by balance desc;
+
+select * from transactions
+order by TransactionDate desc;
+
+select * from customers 
+order by FirstName asc;
+
+select * from accounts
+order by accounttype asc;
+
+select * from transactions 
+order by amount desc;
+
+select * from customers
+order by DateOfBirth;
+
+show columns from customers;
+
+SELECT * FROM ACCOUNTS
+ORDER BY BALANCE DESC
+LIMIT 5;
+
+SELECT * FROM CUSTOMERS
+LIMIT 3;
+
+SELECT * FROM TRANSACTIONS
+LIMIT 5 OFFSET 3;
+
+SELECT * FROM TRANSACTIONS
+ORDER BY AMOUNT DESC
+LIMIT 3;
+
+SELECT * FROM CUSTOMERS
+LIMIT 4;
+
+SELECT * FROM accounts
+LIMIT 3 offset 2;
+
+SELECT * FROM transactions
+ORDER BY TransactionDate DESC
+LIMIT 5;
+
+SELECT * FROM ACCOUNTS
+WHERE ACCOUNTTYPE = 'SAVINGS'
+ORDER BY BALANCE DESC;
+
+SELECT * FROM CUSTOMERS
+WHERE FIRSTNAME LIKE 'S%'
+LIMIT 5;
+
+SELECT *
+FROM Transactions
+WHERE TransactionType IN ('Deposit','Withdrawal')
+ORDER BY TransactionDate DESC;
+
