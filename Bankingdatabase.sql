@@ -440,3 +440,105 @@ FROM Transactions
 WHERE TransactionType IN ('Deposit','Withdrawal')
 ORDER BY TransactionDate DESC;
 
+use bankingdb;
+
+select * from customers;
+
+select firstname,
+upper(firstname) as uppercasename
+from customers;
+
+select firstname,
+lower(firstname) as lowercasename
+from customers;
+
+select firstname,
+length(firstname) as namelength
+from customers;
+
+select firstname,
+left(firstname,3) as initials
+from customers;
+
+select 
+concat(firstname,'-',lastname) as fullname
+from customers;
+
+select * from customers;
+select * from transactions;
+
+select current_date();
+select now();
+
+select customerid,
+year(dateofbirth) as year
+from customers;
+
+select customerid,
+month(dateofbirth) as month
+from customers;
+
+SELECT
+CustomerID,
+DATEDIFF(CURDATE(),DateOfBirth) AS Days
+FROM customers;
+
+SELECT
+    FirstName,
+    DateOfBirth,
+    IF(YEAR(DateOfBirth) <= 1995,
+       'Adult',
+       'Young') AS Category
+FROM Customers;
+
+SELECT
+    FirstName,
+    IFNULL(Phone, 'Not Available') AS PhoneNumber
+FROM Customers;
+
+SELECT GREATEST(
+'2000-09-20',
+'1995-06-18',
+'1997-09-12',
+'1993-11-25'
+) AS LatestBirthDate;
+
+SELECT LEAST(
+'2000-09-20',
+'1995-06-18',
+'1997-09-12',
+'1993-11-25'
+) AS EarliestBirthDate;
+
+SELECT
+    FirstName,
+    NULLIF(FirstName,'Priya') AS Result
+FROM Customers;
+
+SELECT SUM(Balance) as total_balance
+FROM Accounts;
+
+SELECT AVG(Balance) AS average_balance
+FROM Accounts;
+
+SELECT MAX(Balance) AS highest_balance
+FROM Accounts;
+
+SELECT MIN(Balance) AS lowest_balance
+FROM Accounts;
+
+SELECT COUNT(*) AS total_accounts
+FROM Accounts;
+
+SELECT 
+    AccountType,
+    SUM(Balance) AS TotalBalance
+FROM Accounts
+GROUP BY AccountType;
+
+SELECT 
+    AccountType,
+    SUM(Balance) AS TotalBalance
+FROM Accounts
+GROUP BY AccountType
+HAVING SUM(Balance) > 25000;
