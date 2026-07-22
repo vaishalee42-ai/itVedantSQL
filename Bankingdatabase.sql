@@ -542,3 +542,48 @@ SELECT
 FROM Accounts
 GROUP BY AccountType
 HAVING SUM(Balance) > 25000;
+
+select loanid, customerid, loanamount,
+RANK() OVER(ORDER BY LOANAMOUNT DESC
+)AS LOANRANK
+FROM LOANS;
+
+select loanid, customerid, loanamount,
+dense_rank() OVER(ORDER BY LOANAMOUNT DESC
+)AS DENSERANK
+FROM LOANS;
+
+select loanid,customerid,loanamount,
+row_number() over(
+order by loanamount desc
+) as rownumber
+from loans;
+
+select * from loans;
+select loanid, customerid, loanamount,
+row_number() over(
+partition by customerid
+order by loanamount desc
+)as rownum
+from loans;
+
+select loanid, customerid, loanamount,
+sum(loanamount) over(order by loanamount desc) as runningtotal
+from loans;
+USE BANKINGDB;
+SELECT
+    LoanID,
+    CustomerID,
+    LoanAmount,
+    LAG(LoanAmount) OVER(
+        ORDER BY LoanAmount DESC
+    ) AS PreviousLoanAmount
+FROM Loans;
+
+SELECT
+    LoanID, CustomerID, LoanAmount,
+    LEAD(LoanAmount) OVER(
+        ORDER BY LoanAmount DESC
+    ) AS NextLoanAmount
+FROM Loans;
+
