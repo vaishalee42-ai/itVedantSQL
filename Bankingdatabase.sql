@@ -632,4 +632,42 @@ ON a.AccountID = t.AccountID
 WHERE a.Balance > 30000
 ORDER BY a.Balance DESC;
 
+USE BANKINGDB;
 
+SELECT  avg(AMOUNT)
+FROM TRANSACTIONS;
+SELECT * FROM TRANSACTIONS WHERE AMOUNT > (
+SELECT AVG(AMOUNT) FROM TRANSACTIONS);
+
+select accountid, accounttype, balance, customerid from accounts
+where balance > (
+select avg(balance)
+from accounts)
+order by balance desc;
+
+SELECT
+    AccountID,
+    AccountType,
+    Balance,
+    CustomerID
+FROM Accounts
+WHERE AccountID IN
+(
+    SELECT AccountID
+    FROM Transactions
+    WHERE TransactionType = 'Deposit'
+);
+select * from transactions;
+select * from accounts;
+
+SELECT
+    AccountID,
+    AccountType,
+    Balance,
+    CustomerID
+FROM Accounts
+WHERE Balance =
+(
+    SELECT MAX(Balance)
+    FROM Accounts
+);
