@@ -671,3 +671,37 @@ WHERE Balance =
     SELECT MAX(Balance)
     FROM Accounts
 );
+
+use bankingdb;
+
+CREATE VIEW High_balance_accounts as 
+select
+accountid, accounttype, balance, customerid
+from accounts
+where balance >30000;
+
+select * from high_balance_accounts;
+
+create or replace view high_balance_accounts as
+select
+a.accountid, a.accounttype, a.balance, a.customerid,
+t.transactionid,
+t.transactiondate,
+t.transactiontype,
+t.amount
+from accounts a 
+inner join transactions t
+on a.accountid = t.accountid
+where a.balance >30000;
+
+select
+accountid, 
+accounttype,
+balance,
+customerid,
+transactionid,
+transactiondate,
+transactiontype,
+amount
+from high_balance_accounts
+order by balance desc;
